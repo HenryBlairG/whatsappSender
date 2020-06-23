@@ -1,6 +1,6 @@
-'''
+"""
 Sends messages from url.
-'''
+"""
 from selenium import webdriver as wd 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -12,7 +12,7 @@ import time
 
 class WebWSPHandler:
 
-    def __init__(self, user, driver_path='', timeout=600):
+    def __init__(self, user=None, driver_path='', timeout=600):
         self.profile = user
         self.timeout = timeout  # Timeout in 600 seconds
         self.options = wd.ChromeOptions()
@@ -42,7 +42,7 @@ class WebWSPHandler:
                 
 
 if __name__ == '__main__':
+    import os
     data = []
-    wsp = WebWSPHandler(user='/home/henry/.config/google-chrome/Default',
-                        driver_path='chromedriver')
+    wsp = WebWSPHandler(driver_path=os.path.join(os.getcwd(), 'chromedriver'))
     wsp.pressEnter(pages=data)
