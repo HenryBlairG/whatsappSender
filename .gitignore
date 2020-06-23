@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# binary needed to execute program
+chromedriver
+# project folder
+.idea/

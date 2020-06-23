@@ -43,6 +43,6 @@ class WebWSPHandler:
 
 if __name__ == '__main__':
     data = []
-    wsp = WebWSPHandler(user = '/home/henry/.config/google-chrome/Default', 
-                        driver_path='/usr/local/bin/chromedriver')
+    wsp = WebWSPHandler(user='/home/henry/.config/google-chrome/Default',
+                        driver_path='chromedriver')
     wsp.pressEnter(pages=data)
