@@ -1,5 +1,6 @@
 from urllib.parse import quote
 
+
 START_CHAT = 'https://web.whatsapp.com/send?phone={0}&text={1}&source&data&app_absent'
 
 
