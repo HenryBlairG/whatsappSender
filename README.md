@@ -7,7 +7,7 @@ simple whatsapp automatic message sender
 
 * Python3.8
 * pip3
-* pipenv
+* pipenv ([How to use Python pipenv in mac and windows | By Mahmud Ahsan](https://medium.com/@mahmudahsan/how-to-use-python-pipenv-in-mac-and-windows-1c6dc87b403e))
 * [Current ChromeDriver](http://chromedriver.chromium.org/downloads) (Tested with ChromeDriver 83.0.4103.39)
 
 ## Usage
