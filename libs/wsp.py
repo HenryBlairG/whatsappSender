@@ -12,13 +12,15 @@ import time
 
 class WebWSPHandler:
 
+    START_URL = 'https://web.whatsapp.com/'
+
     def __init__(self, user=None, driver_path='', timeout=600):
         self.profile = user
         self.timeout = timeout  # Timeout in 600 seconds
         self.options = wd.ChromeOptions()
         self.options.add_argument(f'user-data-dir={self.profile}')
         self.driver = wd.Chrome(driver_path, options=self.options)
-        self.driver.get('https://web.whatsapp.com/')
+        self.driver.get(WebWSPHandler.START_URL)
         self.wait = None
     
     def pressEnter(self, pages, **kwargs):
