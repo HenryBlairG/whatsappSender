@@ -1,6 +1,8 @@
 # whatsappSender
 simple whatsapp automatic message sender
 
+![Python application](https://github.com/HenryBlairG/whatsappSender/workflows/Python%20application/badge.svg?branch=master)
+
 ## Requirements
 
 * Python3.8
