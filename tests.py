@@ -9,4 +9,4 @@ def test_no_msg_url():
 
 
 def test_send():
-    assert url.send_msg_url('123', 'a') == 'https://web.whatsapp.com/send?phone=123&text=abc&source&data&app_absent'
+    assert url.send_msg_url('123', 'abc') == 'https://web.whatsapp.com/send?phone=123&text=abc&source&data&app_absent'
