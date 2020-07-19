@@ -131,3 +131,4 @@ dmypy.json
 # binary needed to execute program
 chromedriver
 None/
+.idea/
