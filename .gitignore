@@ -132,3 +132,6 @@ dmypy.json
 chromedriver
 None/
 .idea/
+.vscode/
+*.code-workspace
+*.ui

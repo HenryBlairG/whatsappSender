@@ -1,27 +1,40 @@
 """
 Sends messages from url.
 """
-from selenium import webdriver as wd 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait as wait
-from selenium.webdriver.support.expected_conditions import presence_of_element_located as poel
-
+import libs.explorer as xp
 import time
 
 
-class WebWSPHandler:
+class WebWSP(xp.ExplorerHandler):
 
     START_URL = 'https://web.whatsapp.com/'
+    PROFILE_PHOTO_NAME = '_1BjNO'
+    SEND_BUTTON_NAME = '_1U1xa'
+    INVALID_NUM_NAME = 'G_MLO'
+    BODY_CHAT_NAME = '_1V8rX'
 
-    def __init__(self, user=None, driver_path='', timeout=600):
-        self.profile = user
-        self.timeout = timeout  # Timeout in 600 seconds
-        self.options = wd.ChromeOptions()
-        self.options.add_argument(f'user-data-dir={self.profile}')
-        self.driver = wd.Chrome(driver_path, options=self.options)
-        self.driver.get(WebWSPHandler.START_URL)
-        self.wait = None
+    def __init__(self, user=None, driver_path='', timeout=15):
+        super().__init__(user, driver_path, timeout)
+        self.get(
+            WebWSP.START_URL,
+            WebWSP.PROFILE_PHOTO_NAME
+        )
+    
+    def click_send(self):
+        btn = self.driver.find_elements_by_class_name(
+            WebWSP.SEND_BUTTON_NAME
+        )[0]
+        btn.click()
+        self.click_out()
+        
+    
+    def invalid_num(self):
+        inv = self.driver.find_elements_by_class_name(
+            WebWSP.INVALID_NUM_NAME
+        )
+        if inv:
+            return True
+        return False
     
     def pressEnter(self, pages, **kwargs):
         largo = len(pages)
@@ -29,22 +42,22 @@ class WebWSPHandler:
         for page in pages:
             print(f'{count}/{largo}')
             count +=1
-            try:
-                self.driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
-                self.driver.get(page)
-                time.sleep(15)
-                sendButton = self.driver.find_elements_by_class_name('_1U1xa')[0]
-                sendButton.click()
-                self.driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 'w')
-                time.sleep(1)
-                obj = self.driver.switch_to.alert
-                obj.dismiss()
-            except Exception as err:
-                print(f'{err}\n\n')
+            self.open_tab()
+            self.get(page, WebWSP.PROFILE_PHOTO_NAME)
+            if self.invalid_num():
+                print(f'Invalid number: {page}')
+                continue
+            self.click_send()
+            self.close_tab()
+            self.dismiss_alert()
                 
 
 if __name__ == '__main__':
     import os
-    data = []
-    wsp = WebWSPHandler(driver_path=os.path.join(os.getcwd(), 'chromedriver'))
+    data = [
+        'https://web.whatsapp.com/send?phone=123&text=abc&source&data&app_absent',
+        'https://web.whatsapp.com/send?phone=56944361035&text=abc&source&data&app_absent'
+    ]
+    wsp = WebWSP(driver_path=os.path.join(os.getcwd(), '../chromedriver'))
     wsp.pressEnter(pages=data)
+    wsp.quit_driver()
