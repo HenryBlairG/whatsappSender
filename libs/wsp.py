@@ -13,7 +13,7 @@ class WebWSP(xp.ExplorerHandler):
     INVALID_NUM_NAME = 'G_MLO'
     BODY_CHAT_NAME = '_1V8rX'
 
-    def __init__(self, user=None, driver_path='', timeout=15):
+    def __init__(self, user=None, driver_path='', timeout=600):
         super().__init__(user, driver_path, timeout)
         self.get(
             WebWSP.START_URL,
@@ -23,9 +23,11 @@ class WebWSP(xp.ExplorerHandler):
     def click_send(self):
         btn = self.driver.find_elements_by_class_name(
             WebWSP.SEND_BUTTON_NAME
-        )[0]
-        btn.click()
-        self.click_out()
+        )
+        if btn:
+            btn = btn[0]
+            btn.click()
+        # self.click_out()
         
     
     def invalid_num(self):
@@ -54,10 +56,12 @@ class WebWSP(xp.ExplorerHandler):
 
 if __name__ == '__main__':
     import os
-    data = [
-        'https://web.whatsapp.com/send?phone=123&text=abc&source&data&app_absent',
-        'https://web.whatsapp.com/send?phone=56944361035&text=abc&source&data&app_absent'
+    data1 = []
+    data2 = [
+        'https://web.whatsapp.com/send?phone=56944361035&text=abc{}&source&data&app_absent'.format(i)
+        for i in range(1000)
     ]
-    wsp = WebWSP(driver_path=os.path.join(os.getcwd(), '../chromedriver'))
+    data = data1+data2
+    wsp = WebWSP(driver_path=os.path.join(os.getcwd(), 'chromedriver'))
     wsp.pressEnter(pages=data)
     wsp.quit_driver()

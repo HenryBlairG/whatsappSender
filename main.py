@@ -30,6 +30,27 @@ def sing_msg_multi_num(numb_path,
 
 
 if __name__ == '__main__':
-    PHONE_PATH = ''
-    MSG_PATH = ''
-    sing_msg_multi_num(PHONE_PATH, MSG_PATH)
+    from random import shuffle
+    from time import time
+    # PHONE_PATH = ''
+    # MSG_PATH = ''
+    # sing_msg_multi_num(PHONE_PATH, MSG_PATH)
+    data0 = [
+        'https://web.whatsapp.com/send?phone=123&text=&source&data&app_absent'
+        for _ in range(0)
+    ]
+    data1 = [
+        'https://web.whatsapp.com/send?phone=56944361035&text={}&source&data&app_absent'.format(f'{i}'*(i+1))
+        for i in range(200)
+    ]
+    # shuffle(data:= data0 + data1)
+    data = data1[::-1]
+    wsp = Wsp(driver_path=os_join(getcwd(), 'chromedriver'))
+    t_start = time()
+    wsp.pressEnter(pages=data)
+    wsp.quit_driver()
+    total = time() - t_start
+    if total < 60:
+        print(f'Elapsed Time: {total}s')
+    else:
+        print(f'Elapsed Time: {total/60}m')

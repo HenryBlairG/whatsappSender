@@ -1,12 +1,20 @@
 from selenium import webdriver as wd 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait as wait
+from selenium.common.exceptions import (
+    UnexpectedAlertPresentException as UnAlPr
+)
+from selenium.webdriver.common.action_chains import (
+    ActionChains as chains
+)
+from selenium.webdriver.support.ui import (
+    WebDriverWait as wait
+)
 from selenium.webdriver.support.expected_conditions import (
     presence_of_element_located as poel,
-    alert_is_present as aip
+    alert_is_present as aip,
 )
-from selenium.webdriver.common.action_chains import ActionChains as chains
+
 import time
 
 
@@ -41,31 +49,31 @@ class ExplorerHandler:
         chains(
             self.driver
         ).key_down(
-            Keys.COMMAND
+            Keys.CONTROL
         ).send_keys(
             't'
         ).key_up(
-            Keys.COMMAND
+            Keys.CONTROL
         ).perform()
     
     def close_tab(self):
         chains(
             self.driver
         ).key_down(
-            Keys.COMMAND
+            Keys.CONTROL
         ).send_keys(
             'w'
         ).key_up(
-            Keys.COMMAND
+            Keys.CONTROL
         ).perform()
     
     def get(self, 
         url, elem_name):
-
         self.driver.get(
             url
         )
-        res = wait(
+        self.accept_alert()
+        wait(
             self.driver, 
             self.timeout
         ).until(
@@ -77,12 +85,15 @@ class ExplorerHandler:
             )
         )
 
-    
     def dismiss_alert(self):
-        time.sleep(1)
         if aip()(self.driver):
             alert = self.driver.switch_to.alert
             alert.dismiss()
+    
+    def accept_alert(self):
+        if aip()(self.driver):
+            alert = self.driver.switch_to.alert
+            alert.accept()
 
     def quit_driver(self):
         print('Closing Driver')
