@@ -27,30 +27,38 @@ def sing_msg_multi_num(numb_path,
                     ) for n in numbers
                 ]
             )
+def multi_msg_multi_num(file_path):
+    wsp = Wsp(driver_path=os_join(getcwd(), 'chromedriver'))
+    with open(file_path, 'r') as file_data:
+        numb = ''
+        msg = ''
+        data = []
+        for idx, line in enumerate(file_data):
+            # print(f'\n\n{idx}  {line}\n\n')
+            # number, msg = line.split(';')
+            # print(f'{number}: {msg}')
+            if not idx % 3:  # Es numero más intro
+                numb, msg = line.split(';')
+                msg = msg.replace('"', '')
+                # print(f'{numb}, {msg}')
+            elif idx % 3 == 1:
+                msg += line
+                # print(f'{numb}, {msg}')
+            elif idx % 3 == 2:
+                msg += line.replace('"', '')
+                # print(f'{numb}, {msg}')
+                data.append(s_url(numb, msg))
+                numb, msg = '', ''
+        wsp.pressEnter(data)
 
 
 if __name__ == '__main__':
-    from random import shuffle
     from time import time
-    # PHONE_PATH = ''
-    # MSG_PATH = ''
-    # sing_msg_multi_num(PHONE_PATH, MSG_PATH)
-    data0 = [
-        'https://web.whatsapp.com/send?phone=123&text=&source&data&app_absent'
-        for _ in range(0)
-    ]
-    data1 = [
-        'https://web.whatsapp.com/send?phone=56944361035&text={}&source&data&app_absent'.format(f'{i}'*(i+1))
-        for i in range(200)
-    ]
-    # shuffle(data:= data0 + data1)
-    data = data1[::-1]
-    wsp = Wsp(driver_path=os_join(getcwd(), 'chromedriver'))
     t_start = time()
-    wsp.pressEnter(pages=data)
-    wsp.quit_driver()
+    # multi_msg_multi_num()
     total = time() - t_start
     if total < 60:
         print(f'Elapsed Time: {total}s')
     else:
         print(f'Elapsed Time: {total/60}m')
+    

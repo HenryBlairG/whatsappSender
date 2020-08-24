@@ -15,8 +15,6 @@ from selenium.webdriver.support.expected_conditions import (
     alert_is_present as aip,
 )
 
-import time
-
 
 class ExplorerHandler:
 
@@ -36,6 +34,7 @@ class ExplorerHandler:
             driver_path, 
             options=self.options
         )
+        
     
     def click_out(self):
         chains(

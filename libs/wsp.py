@@ -19,6 +19,7 @@ class WebWSP(xp.ExplorerHandler):
             WebWSP.START_URL,
             WebWSP.PROFILE_PHOTO_NAME
         )
+        # self.driver.minimize_window()
     
     def click_send(self):
         btn = self.driver.find_elements_by_class_name(
