@@ -135,3 +135,6 @@ None/
 .vscode/
 *.code-workspace
 *.ui
+
+# Compresed files
+*.zip
