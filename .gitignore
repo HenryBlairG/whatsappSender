@@ -138,3 +138,6 @@ None/
 
 # Compresed files
 *.zip
+*.txt
+*.csv
+*.xlsx
