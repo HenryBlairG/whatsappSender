@@ -1,0 +1,23 @@
+{
+  "name": "wspsender",
+  "version": "1.0.0",
+  "description": "bot to send messages to given numbers with whatsapp web",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenryBlairG/whatsappSender.git"
+  },
+  "author": "HenryBlairG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HenryBlairG/whatsappSender/issues"
+  },
+  "homepage": "https://github.com/HenryBlairG/whatsappSender#readme",
+  "dependencies": {
+    "puppeteer": "^5.5.0"
+  }
+}
