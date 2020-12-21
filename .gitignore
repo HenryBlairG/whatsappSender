@@ -133,6 +133,8 @@ chromedriver
 None/
 .idea/
 .vscode/
+tmp/
+node_modules/
 *.code-workspace
 *.ui
 
