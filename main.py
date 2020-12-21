@@ -27,29 +27,13 @@ def sing_msg_multi_num(numb_path,
                     ) for n in numbers
                 ]
             )
-def multi_msg_multi_num(file_path):
+def multi_msg_multi_num(number_path, msg_path):
     wsp = Wsp(driver_path=os_join(getcwd(), 'chromedriver'))
-    with open(file_path, 'r') as file_data:
-        numb = ''
-        msg = ''
-        data = []
-        for idx, line in enumerate(file_data):
-            # print(f'\n\n{idx}  {line}\n\n')
-            # number, msg = line.split(';')
-            # print(f'{number}: {msg}')
-            if not idx % 3:  # Es numero más intro
-                numb, msg = line.split(';')
-                msg = msg.replace('"', '')
-                # print(f'{numb}, {msg}')
-            elif idx % 3 == 1:
-                msg += line
-                # print(f'{numb}, {msg}')
-            elif idx % 3 == 2:
-                msg += line.replace('"', '')
-                # print(f'{numb}, {msg}')
-                data.append(s_url(numb, msg))
-                numb, msg = '', ''
-        wsp.pressEnter(data)
+    with open(number_path) as numbers:
+        with open(msg_path) as messages:
+            data = list(map(lambda x: s_url(x[0], x[1]), zip([n.strip() for n in numbers], messages.read().split(';'))))
+            # print(data)
+            wsp.pressEnter(data)
 
 
 if __name__ == '__main__':
