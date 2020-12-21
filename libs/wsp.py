@@ -9,9 +9,9 @@ class WebWSP(xp.ExplorerHandler):
 
     START_URL = 'https://web.whatsapp.com/'
     PROFILE_PHOTO_NAME = '_1l12d'
-    SEND_BUTTON_NAME = '_1U1xa'
-    INVALID_NUM_NAME = 'G_MLO'
-    BODY_CHAT_NAME = '_1V8rX'
+    SEND_BUTTON_NAME = '_2Ujuu'
+    INVALID_NUM_NAME = '_2fuxX'
+    BODY_CHAT_NAME = '_1awRl copyable-text selectable-text'
 
     def __init__(self, user=None, driver_path='', timeout=600):
         super().__init__(user, driver_path, timeout)

@@ -39,7 +39,7 @@ def multi_msg_multi_num(number_path, msg_path):
 if __name__ == '__main__':
     from time import time
     t_start = time()
-    # multi_msg_multi_num()
+    multi_msg_multi_num('tmp/FonosCorte211220.txt', 'tmp/MensajeCorte211220.txt')
     total = time() - t_start
     if total < 60:
         print(f'Elapsed Time: {total}s')
