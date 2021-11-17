@@ -8,10 +8,10 @@ import time
 class WebWSP(xp.ExplorerHandler):
 
     START_URL = 'https://web.whatsapp.com/'
-    PROFILE_PHOTO_NAME = '_1l12d'
-    SEND_BUTTON_NAME = '_2Ujuu'
-    INVALID_NUM_NAME = '_2fuxX'
-    BODY_CHAT_NAME = '_1awRl copyable-text selectable-text'
+    PROFILE_PHOTO_NAME = '_1lPgH'
+    SEND_BUTTON_NAME = '_4sWnG'
+    INVALID_NUM_NAME = '_3SRfO'
+    BODY_CHAT_NAME = '_13NKt copyable-text selectable-text'
 
     def __init__(self, user=None, driver_path='', timeout=600):
         super().__init__(user, driver_path, timeout)
