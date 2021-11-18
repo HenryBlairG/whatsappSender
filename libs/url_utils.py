@@ -1,4 +1,9 @@
-from urllib.parse import quote
+from urllib.parse import (
+    parse_qs,
+    quote,
+    unquote,
+    urlparse
+)
 
 
 START_CHAT = 'https://web.whatsapp.com/send?phone={0}&text={1}&source&data&app_absent'
@@ -10,6 +15,10 @@ def no_msg_url(phone_number=None):
 
 def send_msg_url(phone_number=None, message=None):
     return START_CHAT.format(phone_number, quote(message))
+
+def get_url_params(url):
+    q = parse_qs(urlparse(url).query)
+    return q['phone'][0], unquote(q['text'][0])
 
 
 def send_msgs(file_stream):

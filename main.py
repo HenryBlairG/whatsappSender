@@ -1,7 +1,10 @@
 """
 Main File for Program
 """
-from libs.url_utils import send_msg_url as s_url
+from libs.url_utils import (
+    send_msg_url as s_url, 
+    get_url_params as g_params
+)
 from libs.wsp import WebWSP as Wsp
 from os.path import join as os_join
 from os import getcwd
@@ -33,7 +36,7 @@ def multi_msg_multi_num(number_path, msg_path):
         with open(msg_path) as messages:
             data = list(map(lambda x: s_url(x[0], x[1]), zip([n.strip() for n in numbers], messages.read().split(';'))))
             # print(data)
-            wsp.pressEnter(data)
+            wsp.pressEnter(data, g_params)
 
 
 if __name__ == '__main__':
@@ -45,4 +48,3 @@ if __name__ == '__main__':
         print(f'Elapsed Time: {total}s')
     else:
         print(f'Elapsed Time: {total/60}m')
-    

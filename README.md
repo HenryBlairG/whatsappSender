@@ -11,9 +11,8 @@ simple whatsapp automatic message sender
 * [Current ChromeDriver](http://chromedriver.chromium.org/downloads) (Tested with  [ChromeDriver 84.0.4147.30](https://chromedriver.storage.googleapis.com/index.html?path=84.0.4147.30/))
 
 ## Usage
-```
-$ git pull
-$ pipenv install
-$ python3 wsp.py
+```shell
+git pull && pipenv shell && pipenv install;
+python main.py
 ```
 
